@@ -1,0 +1,30 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "My Files";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>@file</td>
+
+                @{
+                    var link = "https://storage.cloud.google.com/msd63apfc2025ra/" + file;
+                }
+
+                <td><a href="@link">Download</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
