@@ -57,9 +57,14 @@ namespace PFCWebApplication
             string project = builder.Configuration.GetValue<string>("project");
             string bucket = builder.Configuration.GetValue<string>("bucket");
 
+            string redisConnection = builder.Configuration["redisConnection"]; 
+            string redisUser = builder.Configuration["redisUser"];
+            string redisPassword = builder.Configuration["redisPassword"];
+
+
             builder.Services.AddScoped(x=> new FirestoreRepository(project));
             builder.Services.AddScoped(x => new BucketRepository(bucket));
-
+            builder.Services.AddScoped(x => new RedisRepository(redisConnection, redisUser, redisPassword));
 
             var app = builder.Build();
 
